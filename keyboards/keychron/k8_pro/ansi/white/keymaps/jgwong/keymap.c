@@ -24,6 +24,42 @@ enum layers {
   WIN_FN
 };
 
+// Combos
+enum combos {
+    COMBO_LEFT_CTRL,
+    COMBO_LEFT_GUI,
+    COMBO_LEFT_ALT,
+    COMBO_RIGHT_CTRL,
+    COMBO_RIGHT_GUI,
+    COMBO_RIGHT_ALT,
+
+    // Trick to avoid manually specifing the combo count in config.h.
+    COMBO_LENGTH,
+};
+
+uint16_t COMBO_LEN = COMBO_LENGTH;
+
+// Left modifiers
+const uint16_t PROGMEM combo_left_ctrl[] = { KC_A, KC_S, COMBO_END };
+const uint16_t PROGMEM combo_left_gui[] = { KC_S, KC_D, COMBO_END };
+const uint16_t PROGMEM combo_left_alt[] = { KC_D, KC_F, COMBO_END };
+
+// Right modifiers
+const uint16_t PROGMEM combo_right_ctrl[] = { KC_L, KC_SCLN, COMBO_END };
+const uint16_t PROGMEM combo_right_gui[] = { KC_K, KC_L, COMBO_END };
+const uint16_t PROGMEM combo_right_alt[] = { KC_J, KC_K, COMBO_END };
+
+combo_t key_combos[] = {
+    [COMBO_LEFT_CTRL] = COMBO(combo_right_ctrl, KC_LCTL),
+    [COMBO_LEFT_GUI] = COMBO(combo_right_gui, KC_LGUI),
+    [COMBO_LEFT_ALT] = COMBO(combo_right_alt, KC_LALT),
+
+    [COMBO_RIGHT_CTRL] = COMBO(combo_right_ctrl, KC_RCTL),
+    [COMBO_RIGHT_GUI] = COMBO(combo_right_gui, KC_RGUI),
+    [COMBO_RIGHT_ALT] = COMBO(combo_right_alt, KC_LALT),
+};
+
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [MAC_BASE] = LAYOUT_tkl_ansi(
     KC_ESC,   KC_BRID,  KC_BRIU,  KC_MCTL,  KC_LPAD,  BL_DOWN,  BL_UP,    KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,           KC_SNAP,   KC_SIRI,  BL_STEP,

@@ -42,3 +42,13 @@
 #    define CKLED2001_CURRENT_TUNE  { 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60 }
 
 #endif
+
+// Settings to avoid misfiring Combos
+
+// How quickly all Combo keys must be pressed in succession to trigger:
+#define COMBO_TERM 25
+// If a Combo triggers a modifier, only trigger when the Combo is held:
+#define COMBO_MUST_HOLD_MODS
+// How long at least one of the Combo keys must be held to trigger:
+#define COMBO_HOLD_TERM 175
+
