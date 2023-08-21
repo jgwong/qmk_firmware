@@ -194,6 +194,7 @@ void process_record_factory_reset(uint16_t keycode, keyrecord_t *record) {
 }
 
 #ifdef LED_MATRIX_ENABLE
+/*
 bool led_matrix_indicators_user(void) {
     if (factory_reset_ind_state) {
         led_matrix_set_value_all(factory_reset_ind_state % 2 ? 0 : 255);
@@ -201,6 +202,7 @@ bool led_matrix_indicators_user(void) {
 
     return true;
 }
+*/
 #endif
 
 #ifdef RGB_MATRIX_ENABLE

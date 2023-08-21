@@ -118,3 +118,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 )
 
 };
+
+bool led_matrix_indicators_user(void) {
+    if (layer_state_is(JG_BASE)) {
+        led_matrix_set_value(13, 255);
+    }
+    if (layer_state_is(MAC_BASE)) {
+        led_matrix_set_value(14, 255);
+    }
+    return false;
+}
+
+void keyboard_post_init_user(void) {
+    layer_move(JG_BASE);
+}
