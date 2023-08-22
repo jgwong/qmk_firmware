@@ -101,10 +101,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool led_matrix_indicators_user(void) {
     if (layer_state_is(JG_BASE)) {
-        led_matrix_set_value(13, 255);
+        led_matrix_set_value(47, 128);
     }
     if (layer_state_is(MAC_BASE)) {
-        led_matrix_set_value(14, 255);
+        led_matrix_set_value(48, 128);
     }
     return false;
 }
