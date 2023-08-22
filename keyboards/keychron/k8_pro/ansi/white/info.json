@@ -10,20 +10,20 @@
         "driver": "CKLED2001",
         "animations": {
             "none": true,
-            "solid": true,
-            "breathing": true,
+            "solid": false,
+            "breathing": false,
             "band_pinwheel": false,
             "band_spiral": false,
             "cycle_left_right": false,
             "cycle_up_down": false,
             "cycle_out_in": false,
             "dual_beacon": false,
-            "solid_reactive_simple": false,
+            "solid_reactive_simple": true,
             "solid_reactive_multiwide": true,
             "solid_reactive_multinexus": true,
             "solid_splash": true,
             "wave_left_right": false,
-            "effect_max": false
+            "effect_max": true
         }
     }
 }
