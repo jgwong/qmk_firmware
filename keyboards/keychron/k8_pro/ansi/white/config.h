@@ -54,3 +54,5 @@
 // How long at least one of the Combo keys must be held to trigger:
 #define COMBO_HOLD_TERM 175
 
+#define MOUSEKEY_INERTIA
+#define MOUSEKEY_TIME_TO_MAX 64
