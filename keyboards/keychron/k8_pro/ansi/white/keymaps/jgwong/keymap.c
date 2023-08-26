@@ -35,6 +35,17 @@ enum combos {
     COMBO_RIGHT_GUI,
     COMBO_RIGHT_ALT,
 
+    COMBO_GUI1,
+    COMBO_GUI2,
+    COMBO_GUI3,
+    COMBO_GUI4,
+    COMBO_GUI5,
+    COMBO_GUI6,
+    COMBO_GUI7,
+    COMBO_GUI8,
+    COMBO_GUI9,
+    COMBO_GUI0,
+
     // Trick to avoid manually specifing the combo count in config.h.
     COMBO_LENGTH,
 };
@@ -51,6 +62,18 @@ const uint16_t PROGMEM combo_jk[] = { KC_J, KC_K, COMBO_END };
 const uint16_t PROGMEM combo_kl[] = { KC_K, KC_L, COMBO_END };
 const uint16_t PROGMEM combo_lscln[] = { KC_L, KC_SCLN, COMBO_END };
 
+// GUI+number combos
+const uint16_t PROGMEM combo_1q[] = { KC_1, KC_Q, COMBO_END };
+const uint16_t PROGMEM combo_2w[] = { KC_2, KC_W, COMBO_END };
+const uint16_t PROGMEM combo_3e[] = { KC_3, KC_E, COMBO_END };
+const uint16_t PROGMEM combo_4r[] = { KC_4, KC_R, COMBO_END };
+const uint16_t PROGMEM combo_5t[] = { KC_5, KC_T, COMBO_END };
+const uint16_t PROGMEM combo_6y[] = { KC_6, KC_Y, COMBO_END };
+const uint16_t PROGMEM combo_7u[] = { KC_7, KC_U, COMBO_END };
+const uint16_t PROGMEM combo_8i[] = { KC_8, KC_I, COMBO_END };
+const uint16_t PROGMEM combo_9o[] = { KC_9, KC_O, COMBO_END };
+const uint16_t PROGMEM combo_0p[] = { KC_0, KC_P, COMBO_END };
+
 combo_t key_combos[] = {
     [COMBO_LEFT_CTRL] = COMBO(combo_df, KC_LCTL),
     [COMBO_LEFT_GUI] = COMBO(combo_as, KC_LGUI),
@@ -59,6 +82,17 @@ combo_t key_combos[] = {
     [COMBO_RIGHT_CTRL] = COMBO(combo_jk, KC_RCTL),
     [COMBO_RIGHT_GUI] = COMBO(combo_lscln, KC_RGUI),
     [COMBO_RIGHT_ALT] = COMBO(combo_kl, KC_LALT),
+
+    [COMBO_GUI1] = COMBO(combo_1q, LGUI(KC_1)),
+    [COMBO_GUI2] = COMBO(combo_2w, LGUI(KC_2)),
+    [COMBO_GUI3] = COMBO(combo_3e, LGUI(KC_3)),
+    [COMBO_GUI4] = COMBO(combo_4r, LGUI(KC_4)),
+    [COMBO_GUI5] = COMBO(combo_5t, LGUI(KC_5)),
+    [COMBO_GUI6] = COMBO(combo_6y, LGUI(KC_6)),
+    [COMBO_GUI7] = COMBO(combo_7u, LGUI(KC_7)),
+    [COMBO_GUI8] = COMBO(combo_8i, LGUI(KC_8)),
+    [COMBO_GUI9] = COMBO(combo_9o, LGUI(KC_9)),
+    [COMBO_GUI0] = COMBO(combo_0p, LGUI(KC_0)),
 };
 
 // Key aliases for readability
