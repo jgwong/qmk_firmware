@@ -22,6 +22,7 @@ enum layers {
   MAC_BASE = 2,
   FN,
   FN2,
+  FN3,
   MOVE,
   MOUSE,
   MEDIA
@@ -33,16 +34,13 @@ enum layers {
 #define K_BROW_P S(C(KC_TAB))
 // Browser tab next
 #define K_BROW_N C(KC_TAB)
+#define OSM_GUI OSM(MOD_LGUI)
+#define OSM_ALT OSM(MOD_LALT)
+#define OSM_CTL OSM(MOD_LCTL)
+#define OSM_SFT OSM(MOD_LSFT)
 
 // Combos
 enum combos {
-    COMBO_LEFT_CTRL,
-    COMBO_LEFT_GUI,
-    COMBO_LEFT_ALT,
-    COMBO_RIGHT_CTRL,
-    COMBO_RIGHT_GUI,
-    COMBO_RIGHT_ALT,
-
     COMBO_GUI1,
     COMBO_GUI2,
     COMBO_GUI3,
@@ -60,16 +58,6 @@ enum combos {
 
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
-// Left modifiers
-const uint16_t PROGMEM combo_as[] = { KC_A, KC_S, COMBO_END };
-const uint16_t PROGMEM combo_sd[] = { KC_S, KC_D, COMBO_END };
-const uint16_t PROGMEM combo_df[] = { KC_D, KC_F, COMBO_END };
-
-// Right modifiers
-const uint16_t PROGMEM combo_jk[] = { KC_J, KC_K, COMBO_END };
-const uint16_t PROGMEM combo_kl[] = { KC_K, KC_L, COMBO_END };
-const uint16_t PROGMEM combo_lscln[] = { KC_L, KC_SCLN, COMBO_END };
-
 // GUI+number combos
 const uint16_t PROGMEM combo_1q[] = { KC_1, KC_Q, COMBO_END };
 const uint16_t PROGMEM combo_2w[] = { KC_2, KC_W, COMBO_END };
@@ -83,14 +71,6 @@ const uint16_t PROGMEM combo_9o[] = { KC_9, KC_O, COMBO_END };
 const uint16_t PROGMEM combo_0p[] = { KC_0, KC_P, COMBO_END };
 
 combo_t key_combos[] = {
-    [COMBO_LEFT_CTRL] = COMBO(combo_df, KC_LCTL),
-    [COMBO_LEFT_GUI] = COMBO(combo_as, KC_LGUI),
-    [COMBO_LEFT_ALT] = COMBO(combo_sd, KC_LALT),
-
-    [COMBO_RIGHT_CTRL] = COMBO(combo_jk, KC_RCTL),
-    [COMBO_RIGHT_GUI] = COMBO(combo_lscln, KC_RGUI),
-    [COMBO_RIGHT_ALT] = COMBO(combo_kl, KC_LALT),
-
     [COMBO_GUI1] = COMBO(combo_1q, LGUI(KC_1)),
     [COMBO_GUI2] = COMBO(combo_2w, LGUI(KC_2)),
     [COMBO_GUI3] = COMBO(combo_3e, LGUI(KC_3)),
@@ -115,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,  KC_DEL,    KC_END,   KC_PGDN,
     K_FN2,    KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,
     KC_LSFT,            KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,            KC_RSFT,             KC_UP,
-    KC_LCTL,  KC_LGUI,  KC_LALT,                                KC_SPC,                                 KC_RALT,  KC_RGUI, MO(FN),    KC_RCTL,  KC_LEFT,   KC_DOWN,  KC_RGHT
+    KC_LCTL,  KC_LGUI,  KC_LALT,                                KC_SPC,                                 KC_RALT,  MO(FN3), MO(FN),    KC_RCTL,  KC_LEFT,   KC_DOWN,  KC_RGHT
 ),
 
 [MAC_BASE] = LAYOUT_tkl_ansi(
@@ -124,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
     _______,            _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
-    KC_LCTL,  KC_LOPTN, KC_LCMMD,                               _______,                                KC_ROPTN, KC_RCMMD, MO(FN),   KC_RCTL,  _______,  _______,  _______
+    KC_LCTL,  KC_LOPTN, KC_LCMMD,                               _______,                                KC_ROPTN, MO(FN3),  MO(FN),   KC_RCTL,  _______,  _______,  _______
 ),
 
 [FN] = LAYOUT_tkl_ansi(
@@ -140,8 +120,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,  _______,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_PGUP,  KC_HOME,  KC_END,   _______,  K_BROW_P, K_BROW_N, _______,  _______,  _______,  _______,
-    _______,  _______,  _______,  TO(MOVE), TO(MOUSE),_______,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT, _______,  _______,            _______,
-    _______,            _______,  _______,  _______,  _______,  _______,  KC_PGDN,  KC_INS,   KC_DEL,   _______,  _______,            _______,            _______,
+    _______,  OSM_GUI,  OSM_ALT,  OSM_SFT,  OSM_CTL,  _______,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT, _______,  _______,            _______,
+    _______,            _______,  _______,  TO(MOVE), TO(MOUSE),_______,  KC_PGDN,  KC_INS,   KC_DEL,   _______,  _______,            _______,            _______,
+    _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______,  _______
+),
+
+[FN3] = LAYOUT_tkl_ansi(
+    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,  _______,  _______,
+    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
+    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
+    _______,  OSM_GUI,  OSM_ALT,  OSM_SFT,  OSM_CTL,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
+    _______,            _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
     _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______,  _______
 ),
 
