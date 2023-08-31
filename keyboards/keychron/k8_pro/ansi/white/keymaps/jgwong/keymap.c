@@ -35,10 +35,12 @@ enum layers {
 // Key aliases for readability
 #define K_FN2 MO(FN2)
 #define K_FN3 LT(FN3, KC_SCLN)
-// Browser tab previous
-#define K_BROW_P S(C(KC_TAB))
-// Browser tab next
-#define K_BROW_N C(KC_TAB)
+#define K_LPAR S(KC_9) // Left parenthesis
+#define K_RPAR S(KC_0) // Right parenthesis
+#define K_LCBRC S(KC_LBRC) // Left curly bracket
+#define K_RCBRC S(KC_RBRC) // Right curly bracket
+#define K_BROW_P S(C(KC_TAB)) // Browser tab previous
+#define K_BROW_N C(KC_TAB) // Browser tab next
 #define OSM_GUI OSM(MOD_LGUI)
 #define OSM_ALT OSM(MOD_LALT)
 #define OSM_CTL OSM(MOD_LCTL)
@@ -147,7 +149,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [FN3] = LAYOUT_tkl_ansi(
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,  _______,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
-    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
+    _______,  K_LPAR,   K_RPAR,   KC_LBRC,  KC_RBRC,  K_LCBRC,  K_RCBRC,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
     _______,  _______,  OSM_ALT,  OSM_SFT,  OSM_CTL,  OSM_GUI,  OSM_GUI,  OSM_CTL,  OSM_SFT,  OSM_ALT,  _______,  _______,            _______,
     _______,            _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
     _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______,  _______
