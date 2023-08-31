@@ -19,6 +19,8 @@
 
 enum custom_keycodes {
   K_LLOCK = SAFE_RANGE,
+  K_SARR, // "Single" Arrow ->
+  K_DARR, // "Double" Arrow =>
 };
 
 // clang-format off
@@ -105,6 +107,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
       return false;
   }
 
+  switch (keycode) {
+      case K_SARR:
+          if (record->event.pressed) {
+              SEND_STRING("->");
+          }
+          break;
+
+      case K_DARR:
+          if (record->event.pressed) {
+              SEND_STRING("=>");
+          }
+          break;
+  }
+
   return true;
 }
 
@@ -149,9 +165,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [FN3] = LAYOUT_tkl_ansi(
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,  _______,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
-    _______,  K_LPAR,   K_RPAR,   KC_LBRC,  KC_RBRC,  K_LCBRC,  K_RCBRC,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
+    _______,  K_LPAR,   K_RPAR,   KC_LBRC,  KC_RBRC,  _______,  _______,  K_LCBRC,  K_RCBRC,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
     _______,  _______,  OSM_ALT,  OSM_SFT,  OSM_CTL,  OSM_GUI,  OSM_GUI,  OSM_CTL,  OSM_SFT,  OSM_ALT,  _______,  _______,            _______,
-    _______,            _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
+    _______,            K_SARR,   K_DARR,   _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
     _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______,  _______
 ),
 
