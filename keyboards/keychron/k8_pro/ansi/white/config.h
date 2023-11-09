@@ -45,6 +45,18 @@
 
 #endif
 
+// Constant Mouse keys settings
+#define MK_3_SPEED
+
+#define MK_C_OFFSET_0 1
+#define MK_C_INTERVAL_0 16
+
+#define MK_C_OFFSET_1 4
+#define MK_C_INTERVAL_1 16
+
+#define MK_C_OFFSET_2 16
+#define MK_C_INTERVAL_2 16
+
 // Settings to avoid misfiring Combos
 
 // How quickly all Combo keys must be pressed in succession to trigger:
@@ -53,6 +65,3 @@
 #define COMBO_MUST_HOLD_MODS
 // How long at least one of the Combo keys must be held to trigger:
 #define COMBO_HOLD_TERM 175
-
-#define MOUSEKEY_INERTIA
-#define MOUSEKEY_TIME_TO_MAX 64
