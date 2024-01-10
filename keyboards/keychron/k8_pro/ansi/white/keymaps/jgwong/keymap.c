@@ -28,20 +28,20 @@ enum layers {
   PC_BASE = 0,
   MAC_BASE = 2,
   FN,
-  J_CAPS, // Caps lock layer
-  J_OPTN, // Option layer
-  J_COLON, // Colon layer
-  J_TAB, // Tab layer
-  J_SQUA, // Square layer
+  JCAPS, // Caps lock layer
+  JOPTN, // Option layer
+  JCOLON, // Colon layer
+  JTAB, // Tab layer
+  JSQUA, // Square layer
   MOVE,
   MOUSE,
 };
 
 // Key aliases for readability
-#define K_J_CAPS MO(J_CAPS)
-#define K_J_COLON LT(J_COLON, KC_SCLN)
-#define K_J_TAB LT(J_TAB, KC_TAB)
-#define K_J_SQUA LT(J_SQUA, KC_MPLY)
+#define K_JCAPS MO(JCAPS)
+#define K_JCOLON LT(JCOLON, KC_SCLN)
+#define K_JTAB LT(JTAB, KC_TAB)
+#define K_JSQUA LT(JSQUA, KC_MPLY)
 #define K_LPAR S(KC_9) // Left parenthesis
 #define K_RPAR S(KC_0) // Right parenthesis
 #define K_LCBRC S(KC_LBRC) // Left curly bracket
@@ -132,12 +132,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [PC_BASE] = LAYOUT_tkl_ansi(
-    KC_ESC,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,             K_J_SQUA,  KC_MUTE,  BL_TOGG,
+    KC_ESC,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,             K_JSQUA,   KC_MUTE,  BL_TOGG,
     KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,  KC_INS,    KC_HOME,  KC_PGUP,
-    K_J_TAB,  KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,  KC_DEL,    KC_END,   KC_PGDN,
-    K_J_CAPS, KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     K_J_COLON,KC_QUOT,            KC_ENT,
+    K_JTAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,  KC_DEL,    KC_END,   KC_PGDN,
+    K_JCAPS,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     K_JCOLON, KC_QUOT,            KC_ENT,
     KC_LSFT,            KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,            KC_RSFT,             KC_UP,
-    KC_LCTL,  KC_LGUI,  KC_LALT,                                KC_SPC,                                 KC_RALT,  MO(J_OPTN),MO(FN),  KC_RCTL,  KC_LEFT,   KC_DOWN,  KC_RGHT
+    KC_LCTL,  KC_LGUI,  KC_LALT,                                KC_SPC,                                 KC_RALT,  MO(JOPTN),MO(FN),   KC_RCTL,  KC_LEFT,   KC_DOWN,  KC_RGHT
 ),
 
 [MAC_BASE] = LAYOUT_tkl_ansi(
@@ -160,7 +160,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 // Caps Lock layer
-[J_CAPS] = LAYOUT_tkl_ansi(
+[JCAPS] = LAYOUT_tkl_ansi(
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,  _______,  _______,
     _______,  KC_BTN1,  KC_BTN3,  KC_BTN2,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_BTN2,  _______,  _______,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_PGUP,  KC_INS,   KC_DEL,   _______,  K_BROW_P, K_BROW_N, KC_BTN3,  _______,  _______,  _______,
@@ -170,7 +170,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 // Option layer
-[J_OPTN] = LAYOUT_tkl_ansi(
+[JOPTN] = LAYOUT_tkl_ansi(
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            KC_NUM,   KC_SCRL,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
@@ -180,7 +180,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 // Colon layer
-[J_COLON] = LAYOUT_tkl_ansi(
+[JCOLON] = LAYOUT_tkl_ansi(
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,  _______,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
     _______,  _______,  _______,  K_LPAR,   K_RPAR,   _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
@@ -190,7 +190,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 // Tab layer
-[J_TAB] = LAYOUT_tkl_ansi(
+[JTAB] = LAYOUT_tkl_ansi(
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            KC_P7,    KC_P8,    KC_P9,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_P4,    KC_P5,    KC_P6,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_P0,    KC_P1,    KC_P2,    KC_P3,
@@ -200,7 +200,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 // Square layer
-[J_SQUA] = LAYOUT_tkl_ansi(
+[JSQUA] = LAYOUT_tkl_ansi(
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,            _______,  KC_MPRV,  KC_MNXT,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
