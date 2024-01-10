@@ -19,8 +19,14 @@
 
 enum custom_keycodes {
   K_LLOCK = SAFE_RANGE,
-  K_SARR, // "Single" Arrow ->
-  K_DARR, // "Double" Arrow =>
+  K_JSARR, // "Single" Arrow ->
+  K_JDARR, // "Double" Arrow =>
+  K_JPAR, // Parenthesis with quotes ('')
+  K_JPARQ, // Parenthesis ()
+  K_JBRA, // Square brackets []
+  K_JBRAQ, // Square brackets with quotes ['']
+  K_JCURL, // Curly brackets {}
+  K_JXML, // Angle brackets <>
 };
 
 // clang-format off
@@ -113,15 +119,59 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   }
 
   switch (keycode) {
-      case K_SARR:
+      case K_JSARR:
           if (record->event.pressed) {
               SEND_STRING("->");
+              return false;
           }
           break;
 
-      case K_DARR:
+      case K_JDARR:
           if (record->event.pressed) {
               SEND_STRING("=>");
+              return false;
+          }
+          break;
+
+      case K_JPAR:
+          if (record->event.pressed) {
+              SEND_STRING("()" SS_TAP(X_LEFT));
+              return false;
+          }
+          break;
+
+      case K_JPARQ:
+          if (record->event.pressed) {
+              SEND_STRING("('')" SS_TAP(X_LEFT) SS_TAP(X_LEFT));
+              return false;
+          }
+          break;
+
+      case K_JBRA:
+          if (record->event.pressed) {
+              SEND_STRING("[]" SS_TAP(X_LEFT));
+              return false;
+          }
+          break;
+
+      case K_JBRAQ:
+          if (record->event.pressed) {
+              SEND_STRING("['']" SS_TAP(X_LEFT) SS_TAP(X_LEFT));
+              return false;
+          }
+          break;
+
+      case K_JCURL:
+          if (record->event.pressed) {
+              SEND_STRING("{}" SS_TAP(X_LEFT));
+              return false;
+          }
+          break;
+
+      case K_JXML:
+          if (record->event.pressed) {
+              SEND_STRING("<>" SS_TAP(X_LEFT));
+              return false;
           }
           break;
   }
@@ -183,9 +233,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [JCOLON] = LAYOUT_tkl_ansi(
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,  _______,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
-    _______,  _______,  _______,  K_LPAR,   K_RPAR,   _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
+    _______,  _______,  _______,  K_JPAR,   K_JPARQ,   _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
     _______,  _______,  OSM_ALT,  OSM_SFT,  OSM_CTL,  OSM_GUI,  OSM_GUI,  OSM_CTL,  OSM_SFT,  OSM_ALT,  _______,  _______,            _______,
-    _______,            K_SARR,   K_DARR,   KC_LBRC,  KC_RBRC,  _______,  K_LCBRC,  K_RCBRC,  _______,  _______,  _______,            _______,            _______,
+    _______,            K_JSARR,  K_JDARR,  K_JBRA,   K_JBRAQ,  _______,  K_JCURL,  K_JXML,   _______,  _______,  _______,            _______,            _______,
     _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______,  _______
 ),
 
