@@ -73,7 +73,7 @@ enum combos {
 
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
-const uint16_t PROGMEM combo_layer_lock[] = { KC_RALT, MO(J_OPTN), COMBO_END };
+const uint16_t PROGMEM combo_layer_lock[] = { KC_F12, KC_BACKSPACE, COMBO_END };
 
 // GUI+number combos
 const uint16_t PROGMEM combo_1q[] = { KC_1, KC_Q, COMBO_END };
