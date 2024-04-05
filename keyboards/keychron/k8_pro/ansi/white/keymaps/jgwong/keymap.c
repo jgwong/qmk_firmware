@@ -122,57 +122,57 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
       case K_JSARR:
           if (record->event.pressed) {
               SEND_STRING("->");
-              return false;
           }
+          return false;
           break;
 
       case K_JDARR:
           if (record->event.pressed) {
               SEND_STRING("=>");
-              return false;
           }
+          return false;
           break;
 
       case K_JPAR:
           if (record->event.pressed) {
               SEND_STRING("()" SS_TAP(X_LEFT));
-              return false;
           }
+          return false;
           break;
 
       case K_JPARQ:
           if (record->event.pressed) {
               SEND_STRING("('')" SS_TAP(X_LEFT) SS_TAP(X_LEFT));
-              return false;
           }
+          return false;
           break;
 
       case K_JBRA:
           if (record->event.pressed) {
               SEND_STRING("[]" SS_TAP(X_LEFT));
-              return false;
           }
           break;
+          return false;
 
       case K_JBRAQ:
           if (record->event.pressed) {
               SEND_STRING("['']" SS_TAP(X_LEFT) SS_TAP(X_LEFT));
-              return false;
           }
+          return false;
           break;
 
       case K_JCURL:
           if (record->event.pressed) {
               SEND_STRING("{}" SS_TAP(X_LEFT));
-              return false;
           }
+          return false;
           break;
 
       case K_JXML:
           if (record->event.pressed) {
               SEND_STRING("<>" SS_TAP(X_LEFT));
-              return false;
           }
+          return false;
           break;
   }
 
