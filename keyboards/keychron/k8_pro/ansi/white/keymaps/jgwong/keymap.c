@@ -21,12 +21,15 @@ enum custom_keycodes {
   K_LLOCK = SAFE_RANGE,
   K_JSARR, // "Single" Arrow ->
   K_JDARR, // "Double" Arrow =>
-  K_JPAR, // Parenthesis with quotes ('')
-  K_JPARQ, // Parenthesis ()
+  K_JPAR, // Parenthesis ()
   K_JBRA, // Square brackets []
-  K_JBRAQ, // Square brackets with quotes ['']
   K_JCURL, // Curly brackets {}
   K_JXML, // Angle brackets <>
+  K_JSQUO, // Single quotes ''
+  K_JDQUO, // Double quotes ""
+  K_JPHPO, // PHP open <?php
+  K_JPHPC, // PHP close ?>
+  K_JPHPE, // PHP short echo <?=  ?>
 };
 
 // clang-format off
@@ -41,6 +44,7 @@ enum layers {
   JSQUA, // Square layer
   MOVE,
   MOUSE,
+  JSYMBOL, // Symbols layer
 };
 
 // Key aliases for readability
@@ -48,6 +52,7 @@ enum layers {
 #define K_JCOLON LT(JCOLON, KC_SCLN)
 #define K_JTAB LT(JTAB, KC_TAB)
 #define K_JSQUA LT(JSQUA, KC_MPLY)
+#define K_JSYMB OSL(JSYMBOL)
 #define K_LPAR S(KC_9) // Left parenthesis
 #define K_RPAR S(KC_0) // Right parenthesis
 #define K_LCBRC S(KC_LBRC) // Left curly bracket
@@ -140,23 +145,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
           return false;
           break;
 
-      case K_JPARQ:
-          if (record->event.pressed) {
-              SEND_STRING("('')" SS_TAP(X_LEFT) SS_TAP(X_LEFT));
-          }
-          return false;
-          break;
-
       case K_JBRA:
           if (record->event.pressed) {
               SEND_STRING("[]" SS_TAP(X_LEFT));
-          }
-          return false;
-          break;
-
-      case K_JBRAQ:
-          if (record->event.pressed) {
-              SEND_STRING("['']" SS_TAP(X_LEFT) SS_TAP(X_LEFT));
           }
           return false;
           break;
@@ -171,6 +162,41 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
       case K_JXML:
           if (record->event.pressed) {
               SEND_STRING("<>" SS_TAP(X_LEFT));
+          }
+          return false;
+          break;
+
+      case K_JSQUO:
+          if (record->event.pressed) {
+              SEND_STRING("''" SS_TAP(X_LEFT));
+          }
+          return false;
+          break;
+
+      case K_JDQUO:
+          if (record->event.pressed) {
+              SEND_STRING("\"\"" SS_TAP(X_LEFT));
+          }
+          return false;
+          break;
+
+      case K_JPHPO:
+          if (record->event.pressed) {
+              SEND_STRING("<?php");
+          }
+          return false;
+          break;
+
+      case K_JPHPC:
+          if (record->event.pressed) {
+              SEND_STRING("?>");
+          }
+          return false;
+          break;
+
+      case K_JPHPE:
+          if (record->event.pressed) {
+              SEND_STRING("<?=  ?>" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT));
           }
           return false;
           break;
@@ -233,9 +259,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [JCOLON] = LAYOUT_tkl_ansi(
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,  _______,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
-    _______,  K_JPAR,   K_JPARQ,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
-    _______,  _______,  OSM_ALT,  OSM_SFT,  OSM_CTL,  OSM_GUI,  OSM_GUI,  OSM_CTL,  OSM_SFT,  OSM_ALT,  _______,  _______,            _______,
-    _______,            K_JBRA,   K_JBRAQ,  K_JSARR,  K_JDARR,  _______,  K_JCURL,  K_JXML,   _______,  _______,  _______,            _______,            _______,
+    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
+    K_JSYMB,  _______,  OSM_ALT,  OSM_SFT,  OSM_CTL,  OSM_GUI,  OSM_GUI,  OSM_CTL,  OSM_SFT,  OSM_ALT,  _______,  _______,            _______,
+    _______,            _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
     _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______,  _______
 ),
 
@@ -265,6 +291,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_WH_U,  _______,  _______,  _______,  _______,  _______,  KC_BTN3,  _______,  _______,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,  KC_MS_L,  KC_MS_D,  KC_MS_U,  KC_MS_R,  _______,  _______,            KC_BTN1,
     _______,            _______,  _______,  _______,  _______,  _______,  KC_WH_D,  _______,  _______,  _______,  _______,            _______,            _______,
+    _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______,  _______
+),
+
+// Tab layer
+[JSYMBOL] = LAYOUT_tkl_ansi(
+TG(JSYMBOL),  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,  _______,  _______,
+    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
+    _______,  K_JPHPO,  K_JPHPC,  K_JPHPE,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
+    _______,  _______,  _______,  _______,  K_JPAR,   K_JBRA,   K_JXML,   K_JCURL,  _______,  _______,  K_JDQUO,  K_JSQUO,            _______,
+    _______,            _______,  _______,  K_JSARR,  K_JDARR,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
     _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______,  _______
 ),
 
