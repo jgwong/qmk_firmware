@@ -30,6 +30,18 @@ enum custom_keycodes {
   K_JPHPO, // PHP open <?php
   K_JPHPC, // PHP close ?>
   K_JPHPE, // PHP short echo <?=  ?>
+
+  K_JC1Q, // Combo 1q
+  K_JC2W, // Combo 2w
+  K_JC3E, // Combo 3e
+  K_JC4R, // Combo 4r
+  K_JC5T, // Combo 5t
+  K_JC6Y, // Combo 6y
+  K_JC7U, // Combo 7u
+  K_JC8I, // Combo 8i
+  K_JC9O, // Combo 9o
+  K_JC0P, // Combo 0p
+
 };
 
 // clang-format off
@@ -101,22 +113,17 @@ const uint16_t PROGMEM combo_0p[] = { KC_0, KC_P, COMBO_END };
 combo_t key_combos[] = {
     [COMBO_LAYER_LOCK] = COMBO(combo_layer_lock, K_LLOCK),
 
-    [COMBO_GUI1] = COMBO(combo_1q, LGUI(KC_1)),
-    [COMBO_GUI2] = COMBO(combo_2w, LGUI(KC_2)),
-    [COMBO_GUI3] = COMBO(combo_3e, LGUI(KC_3)),
-    [COMBO_GUI4] = COMBO(combo_4r, LGUI(KC_4)),
-    [COMBO_GUI5] = COMBO(combo_5t, LGUI(KC_5)),
-    [COMBO_GUI6] = COMBO(combo_6y, LGUI(KC_6)),
-    [COMBO_GUI7] = COMBO(combo_7u, LGUI(KC_7)),
-    [COMBO_GUI8] = COMBO(combo_8i, LGUI(KC_8)),
-    [COMBO_GUI9] = COMBO(combo_9o, LGUI(KC_9)),
-    [COMBO_GUI0] = COMBO(combo_0p, LGUI(KC_0)),
+    [COMBO_GUI1] = COMBO(combo_1q, K_JC1Q),
+    [COMBO_GUI2] = COMBO(combo_2w, K_JC2W),
+    [COMBO_GUI3] = COMBO(combo_3e, K_JC3E),
+    [COMBO_GUI4] = COMBO(combo_4r, K_JC4R),
+    [COMBO_GUI5] = COMBO(combo_5t, K_JC5T),
+    [COMBO_GUI6] = COMBO(combo_6y, K_JC6Y),
+    [COMBO_GUI7] = COMBO(combo_7u, K_JC7U),
+    [COMBO_GUI8] = COMBO(combo_8i, K_JC8I),
+    [COMBO_GUI9] = COMBO(combo_9o, K_JC9O),
+    [COMBO_GUI0] = COMBO(combo_0p, K_JC0P),
 };
-
-// Key aliases for readability
-#define K_MOVE LT(MOVE, KC_CAPS)
-#define K_JG_B TO(JG_BASE)
-#define K_MAC_B TO(MAC_BASE)
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   if (! process_layer_lock(keycode, record, K_LLOCK)) {
@@ -200,11 +207,132 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
           }
           return false;
           break;
+
+      case K_JC1Q:
+          if (record->event.pressed) {
+            if (get_highest_layer(default_layer_state) == MACOS) {
+              SEND_STRING(SS_LOPT("1"));
+            } else {
+              SEND_STRING(SS_LGUI("1"));
+            }
+          }
+          return false;
+          break;
+
+        case K_JC2W:
+          if (record->event.pressed) {
+            if (get_highest_layer(default_layer_state) == MACOS) {
+              SEND_STRING(SS_LOPT("2"));
+            } else {
+              SEND_STRING(SS_LGUI("2"));
+            }
+          }
+          return false;
+          break;
+
+        case K_JC3E:
+          if (record->event.pressed) {
+            if (get_highest_layer(default_layer_state) == MACOS) {
+              SEND_STRING(SS_LOPT("3"));
+            } else {
+              SEND_STRING(SS_LGUI("3"));
+            }
+          }
+          return false;
+          break;
+
+        case K_JC4R:
+          if (record->event.pressed) {
+            if (get_highest_layer(default_layer_state) == MACOS) {
+              SEND_STRING(SS_LOPT("4"));
+            } else {
+              SEND_STRING(SS_LGUI("4"));
+            }
+          }
+          return false;
+          break;
+
+        case K_JC5T:
+          if (record->event.pressed) {
+            if (get_highest_layer(default_layer_state) == MACOS) {
+              SEND_STRING(SS_LOPT("5"));
+            } else {
+              SEND_STRING(SS_LGUI("5"));
+            }
+          }
+          return false;
+          break;
+
+        case K_JC6Y:
+          if (record->event.pressed) {
+            if (get_highest_layer(default_layer_state) == MACOS) {
+              SEND_STRING(SS_LOPT("6"));
+            } else {
+              SEND_STRING(SS_LGUI("6"));
+            }
+          }
+          return false;
+          break;
+
+        case K_JC7U:
+          if (record->event.pressed) {
+            if (get_highest_layer(default_layer_state) == MACOS) {
+              SEND_STRING(SS_LOPT("7"));
+            } else {
+              SEND_STRING(SS_LGUI("7"));
+            }
+          }
+          return false;
+          break;
+
+        case K_JC8I:
+          if (record->event.pressed) {
+            if (get_highest_layer(default_layer_state) == MACOS) {
+              SEND_STRING(SS_LOPT("8"));
+            } else {
+              SEND_STRING(SS_LGUI("8"));
+            }
+          }
+          return false;
+          break;
+
+        case K_JC9O:
+          if (record->event.pressed) {
+            if (get_highest_layer(default_layer_state) == MACOS) {
+              SEND_STRING(SS_LOPT("9"));
+            } else {
+              SEND_STRING(SS_LGUI("9"));
+            }
+          }
+          return false;
+          break;
+
+        case K_JC0P:
+          if (record->event.pressed) {
+            if (get_highest_layer(default_layer_state) == MACOS) {
+              SEND_STRING(SS_LOPT("0"));
+            } else {
+              SEND_STRING(SS_LGUI("0"));
+            }
+          }
+          return false;
+          break;
   }
 
   return true;
 }
 
+/*
+layer_state_t layer_state_set_user(layer_state_t state) {
+  if (get_highest_layer(state) == WIN_ANDROID) {
+    SEND_STRING("LWIN");
+  } else {
+    SEND_STRING("LMAC");
+  }
+
+  return state;
+}
+*/
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [MACOS] = LAYOUT_tkl_ansi(
