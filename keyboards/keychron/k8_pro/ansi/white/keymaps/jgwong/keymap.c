@@ -27,9 +27,8 @@ enum custom_keycodes {
   K_JXML, // Angle brackets <>
   K_JSQUO, // Single quotes ''
   K_JDQUO, // Double quotes ""
-  K_JPHPO, // PHP open <?php
-  K_JPHPC, // PHP close ?>
-  K_JPHPE, // PHP short echo <?=  ?>
+  K_JQUES, // ¿?
+  K_JEXCL, // ¡!
 
   K_JC1Q, // Combo 1q
   K_JC2W, // Combo 2w
@@ -64,11 +63,7 @@ enum layers {
 #define K_JCOLON LT(JCOLON, KC_SCLN)
 #define K_JTAB LT(JTAB, KC_TAB)
 #define K_JSQUA LT(JSQUA, KC_MPLY)
-#define K_JSYMB OSL(JSYMBOL)
-#define K_LPAR S(KC_9) // Left parenthesis
-#define K_RPAR S(KC_0) // Right parenthesis
-#define K_LCBRC S(KC_LBRC) // Left curly bracket
-#define K_RCBRC S(KC_RBRC) // Right curly bracket
+#define K_JF LT(JSYMBOL, KC_F)
 #define K_BROW_P S(C(KC_TAB)) // Browser tab previous
 #define K_BROW_N C(KC_TAB) // Browser tab next
 #define OSM_GUI OSM(MOD_LGUI)
@@ -187,23 +182,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
           return false;
           break;
 
-      case K_JPHPO:
+      case K_JQUES:
           if (record->event.pressed) {
-              SEND_STRING("<?php");
+              SEND_STRING(SS_ROPT("/") "?" SS_TAP(X_LEFT));
           }
           return false;
           break;
 
-      case K_JPHPC:
+      case K_JEXCL:
           if (record->event.pressed) {
-              SEND_STRING("?>");
-          }
-          return false;
-          break;
-
-      case K_JPHPE:
-          if (record->event.pressed) {
-              SEND_STRING("<?=  ?>" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT));
+              SEND_STRING(SS_ROPT("!") "!" SS_TAP(X_LEFT));
           }
           return false;
           break;
@@ -339,7 +327,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,             K_JSQUA,   KC_MUTE,  BL_TOGG,
     KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,  KC_INS,    KC_HOME,  KC_PGUP,
     K_JTAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,  KC_DEL,    KC_END,   KC_PGDN,
-    K_JCAPS,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     K_JCOLON, KC_QUOT,            KC_ENT,
+    K_JCAPS,  KC_A,     KC_S,     KC_D,     K_JF,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     K_JCOLON, KC_QUOT,            KC_ENT,
     KC_LSFT,            KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,            KC_RSFT,             KC_UP,
     KC_LCTL,  KC_LOPT,  KC_LCMD,                                KC_SPC,                                 KC_ROPT,  MO(JOPTN),MO(FN),   KC_RCTL,  KC_LEFT,   KC_DOWN,  KC_RGHT
 ),
@@ -369,7 +357,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,  KC_BTN1,  KC_BTN3,  KC_BTN2,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_BTN2,  _______,  _______,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_PGUP,  KC_INS,   KC_DEL,   _______,  K_BROW_P, K_BROW_N, KC_BTN3,  _______,  _______,  _______,
     _______,  _______,  _______,  _______,  TO(MOUSE),_______,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT, _______,  _______,            KC_BTN1,
-    _______,            _______,  _______,  _______,  _______,  _______,  KC_PGDN,  KC_HOME,  KC_END,   _______,  _______,            _______,            _______,
+    _______,            _______,  _______,  _______,  _______,  _______,  KC_PGDN,  _______,  KC_HOME,  KC_END,   _______,            _______,            _______,
     _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______,  _______
 ),
 
@@ -388,7 +376,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,  _______,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
-    K_JSYMB,  _______,  OSM_ALT,  OSM_SFT,  OSM_CTL,  OSM_GUI,  OSM_GUI,  OSM_CTL,  OSM_SFT,  OSM_ALT,  _______,  _______,            _______,
+    _______,  _______,  OSM_ALT,  OSM_SFT,  OSM_CTL,  OSM_GUI,  OSM_GUI,  OSM_CTL,  OSM_SFT,  OSM_ALT,  _______,  _______,            _______,
     _______,            _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
     _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______,  _______
 ),
@@ -425,11 +413,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Tab layer
 [JSYMBOL] = LAYOUT_tkl_ansi(
 TG(JSYMBOL),  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,  _______,  _______,
-    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
-    _______,  K_JPHPO,  K_JPHPC,  K_JPHPE,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
-    _______,  _______,  _______,  _______,  K_JPAR,   K_JBRA,   K_JXML,   K_JCURL,  _______,  _______,  K_JDQUO,  K_JSQUO,            _______,
-    _______,            _______,  _______,  K_JSARR,  K_JDARR,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
+    _______,  K_JEXCL,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  K_JPAR,   _______,  K_JSARR,  K_JDARR,  _______,  _______,  _______,  _______,
+    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  K_JBRA,   K_JCURL,  _______,  _______,  _______,  _______,
+    _______,  _______,  _______,  _______,  _______,  _______,  _______,  K_JXML,   _______,  _______,  K_JDQUO,  K_JSQUO,            _______,
+    _______,            _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  K_JQUES,            _______,            _______,
     _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______,  _______
 ),
+
 
 };
