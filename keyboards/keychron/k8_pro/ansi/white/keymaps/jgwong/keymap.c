@@ -18,7 +18,7 @@
 #include "features/layer_lock.h"
 
 enum custom_keycodes {
-  K_LLOCK = SAFE_RANGE,
+  K_LLOCK = NEW_SAFE_RANGE,
   K_JSARR, // "Single" Arrow ->
   K_JDARR, // "Double" Arrow =>
   K_JPAR, // Parenthesis ()
