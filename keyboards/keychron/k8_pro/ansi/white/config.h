@@ -47,7 +47,9 @@
 
 // Mouse keys (Accelerated) settings
 #define MOUSEKEY_INTERVAL 16
-#define MOUSEKEY_TIME_TO_MAX 90
+#define MOUSEKEY_TIME_TO_MAX 80
+#define MOUSEKEY_MAX_SPEED 3
+#define MOUSEKEY_WHEEL_DELAY 150
 
 // Settings to avoid misfiring Combos
 
